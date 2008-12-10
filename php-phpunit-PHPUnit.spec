@@ -6,19 +6,18 @@ Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
 Version:	3.2.21
-Release:	3
+Release:	4
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
 # Source0-md5:	183b09907e341006e549476efaa18442
-Source1:	http://pear.phpunit.de/channel.xml
-# Source1-md5:	b8ccb5f4727e7e6d4ee0c0e690f5423b
 URL:		http://www.phpunit.de/
+BuildRequires:	php-pear >= 4:1.1-2
 BuildRequires:	php-pear-PEAR
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.473
 Requires:	php-common >= 3:4.1.0
-Requires:	php-pear >= 4:1.1-1
+Requires:	php-pear >= 4:1.1-2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,16 +53,12 @@ Tests for PEAR::%{_pearname}.
 Testy dla PEAR::%{_pearname}.
 
 %prep
-%pear_package_setup -c %{SOURCE1}
+%pear_package_setup
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_pear_dir}
 %pear_package_install
-
-# also copy channel information
-install -d $RPM_BUILD_ROOT%{php_pear_dir}/.channels
-cp -a .%{php_pear_dir}/.channels/pear.phpunit.de.reg $RPM_BUILD_ROOT%{php_pear_dir}/.channels
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -72,8 +67,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc install.log optional-packages.txt
 %{php_pear_dir}/.registry/.channel.pear.phpunit.de/*.reg
-%{php_pear_dir}/.channels/pear.phpunit.de.reg
-
 %{php_pear_dir}/%{_class}
 
 %files tests
