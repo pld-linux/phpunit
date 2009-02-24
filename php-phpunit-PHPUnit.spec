@@ -6,7 +6,7 @@ Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
 Version:	3.3.14
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
@@ -58,6 +58,8 @@ Testy dla PEAR::%{_pearname}.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_pear_dir}
+install -d $RPM_BUILD_ROOT%{_bindir}
+install usr/bin/phpunit $RPM_BUILD_ROOT%{_bindir}
 %pear_package_install
 
 %clean
@@ -68,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc install.log optional-packages.txt
 %{php_pear_dir}/.registry/.channel.pear.phpunit.de/*.reg
 %{php_pear_dir}/%{_class}
+%attr(755,root,root) %{_bindir}/phpunit
 
 %files tests
 %defattr(644,root,root,755)
