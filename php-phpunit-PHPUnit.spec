@@ -13,16 +13,17 @@ Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
 # Source0-md5:	5cf889fe0e111afd0a401660c124ebd5
 URL:		http://www.phpunit.de/
 BuildRequires:	php-pear >= 4:1.1-2
-BuildRequires:	php-pear-PEAR
+BuildRequires:	php-pear-PEAR >= 1.9.0
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.473
 Requires:	php-common >= 3:4.1.0
 Requires:	php-pear >= 4:1.1-2
+Obsoletes:	php-PHPUnit-tests
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # exclude optional dependencies
-%define		_noautoreq	'pear(Image/GraphViz.*)' 'pear(Log.*)'
+%define		_noautoreq	'pear(Image/GraphViz.*)' 'pear(Log.*)' 'pear(SymfonyComponents.*)'
 
 %description
 PHPUnit is a regression testing framework used by the developer who
@@ -37,20 +38,6 @@ którzy implementują jednostki testowe w PHP. Jest bazowane na JUnit,
 który można znaleźć pod adresem <http://www.junit.org/>.
 
 Ta klasa ma w PEAR status: %{_status}.
-
-%package tests
-Summary:	Tests for PEAR::%{_pearname}
-Summary(pl.UTF-8):	Testy dla PEAR::%{_pearname}
-Group:		Development/Languages/PHP
-Requires:	%{name} = %{version}-%{release}
-AutoProv:	no
-AutoReq:	no
-
-%description tests
-Tests for PEAR::%{_pearname}.
-
-%description tests -l pl.UTF-8
-Testy dla PEAR::%{_pearname}.
 
 %prep
 %pear_package_setup
@@ -71,7 +58,3 @@ rm -rf $RPM_BUILD_ROOT
 %{php_pear_dir}/.registry/.channel.pear.phpunit.de/*.reg
 %{php_pear_dir}/%{_class}
 %attr(755,root,root) %{_bindir}/phpunit
-
-%files tests
-%defattr(644,root,root,755)
-%{php_pear_dir}/tests/%{_pearname}
