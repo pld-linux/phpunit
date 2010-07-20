@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	tests		# build with tests
+
 %include	/usr/lib/rpm/macros.php
 %define		_class		PHPUnit
 %define		_status		stable
@@ -5,18 +9,20 @@
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
-Version:	3.3.16
+Version:	3.4.15
 Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	1bafa52c00d773c84931d43e37532729
+# Source0-md5:	a36105b20467aca3f815704fec440a1f
 URL:		http://www.phpunit.de/
+BuildRequires:	php-channel(pear.phpunit.de)
+BuildRequires:	php-channel(pear.symfony-project.com)
 BuildRequires:	php-pear >= 4:1.1-2
 BuildRequires:	php-pear-PEAR
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.473
-Requires:	php-common >= 3:4.1.0
+Requires:	php-common >= 4:5.1.4
 Requires:	php-pear >= 4:1.1-2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -69,9 +75,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc install.log optional-packages.txt
 %{php_pear_dir}/.registry/.channel.pear.phpunit.de/*.reg
-%{php_pear_dir}/%{_class}
 %attr(755,root,root) %{_bindir}/phpunit
+%{php_pear_dir}/%{_class}
 
+%if %{with tests}
 %files tests
 %defattr(644,root,root,755)
 %{php_pear_dir}/tests/%{_pearname}
+%endif
