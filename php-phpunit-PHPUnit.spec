@@ -6,15 +6,16 @@
 %define		_class		PHPUnit
 %define		_status		stable
 %define		_pearname	%{_class}
+%define		php_min_version 5.2.7
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
-Version:	3.4.15
-Release:	2
+Version:	3.5.0
+Release:	0.1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	a36105b20467aca3f815704fec440a1f
+# Source0-md5:	9da0e1ac9b6da2aa09008e8c2eb956f2
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(pear.phpunit.de)
 BuildRequires:	php-channel(pear.symfony-project.com)
@@ -22,13 +23,17 @@ BuildRequires:	php-pear >= 4:1.1-2
 BuildRequires:	php-pear-PEAR
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.473
-Requires:	php-common >= 4:5.1.4
+Requires:	php-common >= 4:%{php_min_version}
 Requires:	php-pear >= 4:1.1-2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # exclude optional dependencies
-%define		_noautoreq	pear(Image/GraphViz.*) pear(Log.*) pear(SymfonyComponents/.*) pear(XML/RPC2/Client.php)
+%define		dep_optional	pear(Image/GraphViz.*) pear(Log.*) pear(SymfonyComponents/.*) pear(XML/RPC2/Client.php)
+%define		dep_missing		pear(File/Iterator/Factory.php) pear(PHP/CodeCoverage.*) pear(PHP/Timer.php) pear(Text/Template.php)
+
+# put it together for rpmbuild
+%define		_noautoreq	%{?dep_optional} %{?dep_missing}
 
 %description
 PHPUnit is a regression testing framework used by the developer who
@@ -65,7 +70,7 @@ Testy dla PEAR::%{_pearname}.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_pear_dir}
 install -d $RPM_BUILD_ROOT%{_bindir}
-install usr/bin/phpunit $RPM_BUILD_ROOT%{_bindir}
+install -p usr/bin/phpunit $RPM_BUILD_ROOT%{_bindir}
 %pear_package_install
 
 %clean
