@@ -11,26 +11,45 @@ Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
 Version:	3.5.0
-Release:	0.1
+Release:	0.3
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
 # Source0-md5:	9da0e1ac9b6da2aa09008e8c2eb956f2
 URL:		http://www.phpunit.de/
+BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
 BuildRequires:	php-channel(pear.symfony-project.com)
 BuildRequires:	php-pear >= 4:1.1-2
-BuildRequires:	php-pear-PEAR
+BuildRequires:	php-pear-PEAR >= 1:1.9.1
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.473
+Requires:	php-DbUnit >= 1.0.0
+Requires:	php-File_Iterator >= 1.2.3
+Requires:	php-PHPUnit_MockObject >= 1.0.0
+Requires:	php-PHPUnit_Selenium >= 1.0.0
+Requires:	php-PHP_CodeCoverage >= 1.0.0
+Requires:	php-PHP_Timer >= 1.0.0
+Requires:	php-Text_Template >= 1.0.0
+Requires:	php-YAML >= 1.0.2
+Requires:	php-channel(pear.phpunit.de)
 Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-dom
+Requires:	php-pcre
 Requires:	php-pear >= 4:1.1-2
+Requires:	php-reflection
+Requires:	php-spl
+Suggests:	php-dbus
+Suggests:	php-json
+Suggests:	php-pdo
+Suggests:	php-soap
+Suggests:	php-tokenizer
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # exclude optional dependencies
 %define		dep_optional	pear(Image/GraphViz.*) pear(Log.*) pear(SymfonyComponents/.*) pear(XML/RPC2/Client.php)
-%define		dep_missing		pear(File/Iterator/Factory.php) pear(PHP/CodeCoverage.*) pear(PHP/Timer.php) pear(Text/Template.php)
+%define		dep_missing1		pear(File/Iterator/Factory.php) pear(PHP/CodeCoverage.*) pear(PHP/Timer.php) pear(Text/Template.php)
 
 # put it together for rpmbuild
 %define		_noautoreq	%{?dep_optional} %{?dep_missing}
