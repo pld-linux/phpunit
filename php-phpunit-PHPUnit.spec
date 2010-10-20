@@ -10,12 +10,12 @@
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
-Version:	3.5.0
-Release:	0.3
+Version:	3.5.2
+Release:	0.1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	9da0e1ac9b6da2aa09008e8c2eb956f2
+# Source0-md5:	ea0e53d8bfe0ca8dadc9d22b953909b9
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -24,21 +24,21 @@ BuildRequires:	php-pear >= 4:1.1-2
 BuildRequires:	php-pear-PEAR >= 1:1.9.1
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.473
-Requires:	php-DbUnit >= 1.0.0
-Requires:	php-File_Iterator >= 1.2.3
-Requires:	php-PHPUnit_MockObject >= 1.0.0
-Requires:	php-PHPUnit_Selenium >= 1.0.0
-Requires:	php-PHP_CodeCoverage >= 1.0.0
-Requires:	php-PHP_Timer >= 1.0.0
-Requires:	php-Text_Template >= 1.0.0
-Requires:	php-YAML >= 1.0.2
 Requires:	php-channel(pear.phpunit.de)
 Requires:	php-common >= 4:%{php_min_version}
 Requires:	php-dom
 Requires:	php-pcre
 Requires:	php-pear >= 4:1.1-2
+Requires:	php-phpunit-DbUnit >= 1.0.0
+Requires:	php-phpunit-File_Iterator >= 1.2.3
+Requires:	php-phpunit-PHPUnit_MockObject >= 1.0.0
+Requires:	php-phpunit-PHPUnit_Selenium >= 1.0.0
+Requires:	php-phpunit-PHP_CodeCoverage >= 1.0.0
+Requires:	php-phpunit-PHP_Timer >= 1.0.0
+Requires:	php-phpunit-Text_Template >= 1.0.0
 Requires:	php-reflection
 Requires:	php-spl
+Requires:	php-symfony-YAML >= 1.0.2
 Suggests:	php-dbus
 Suggests:	php-json
 Suggests:	php-pdo
