@@ -2,20 +2,20 @@
 # Conditional build:
 %bcond_with	tests		# build with tests
 
-%include	/usr/lib/rpm/macros.php
 %define		_class		PHPUnit
 %define		_status		stable
 %define		_pearname	%{_class}
 %define		php_min_version 5.2.7
+%include	/usr/lib/rpm/macros.php
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-%{_pearname}
-Version:	3.5.3
+Version:	3.5.4
 Release:	0.1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	452084b87b142f4736457ae22a53a105
+# Source0-md5:	f6ea018e6445ccb32c455c38f59db2d6
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -31,9 +31,9 @@ Requires:	php-pcre
 Requires:	php-pear >= 4:1.1-2
 Requires:	php-phpunit-DbUnit >= 1.0.0
 Requires:	php-phpunit-File_Iterator >= 1.2.3
-Requires:	php-phpunit-PHPUnit_MockObject >= 1.0.0
-Requires:	php-phpunit-PHPUnit_Selenium >= 1.0.0
-Requires:	php-phpunit-PHP_CodeCoverage >= 1.0.0
+Requires:	php-phpunit-PHPUnit_MockObject >= 1.0.2
+Requires:	php-phpunit-PHPUnit_Selenium >= 1.0.1
+Requires:	php-phpunit-PHP_CodeCoverage >= 1.0.2
 Requires:	php-phpunit-PHP_Timer >= 1.0.0
 Requires:	php-phpunit-Text_Template >= 1.0.0
 Requires:	php-reflection
