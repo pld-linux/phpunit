@@ -1,21 +1,16 @@
-#
-# Conditional build:
-%bcond_with	tests		# build with tests
-
-%define		_class		PHPUnit
 %define		_status		stable
-%define		_pearname	%{_class}
+%define		_pearname PHPUnit
 %define		php_min_version 5.2.7
 %include	/usr/lib/rpm/macros.php
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
-Name:		php-%{_pearname}
-Version:	3.5.5
-Release:	0.1
+Name:		php-phpunit-%{_pearname}
+Version:	3.5.11
+Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	a66b1b02911e24c49c98ff0a8cdf148c
+# Source0-md5:	ddad3f5b0a2743b73bb6ad408c6b284d
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -39,17 +34,20 @@ Requires:	php-phpunit-Text_Template >= 1.0.0
 Requires:	php-reflection
 Requires:	php-spl
 Requires:	php-symfony-YAML >= 1.0.2
+Suggests:	php-curl
 Suggests:	php-dbus
 Suggests:	php-json
 Suggests:	php-pdo
+Suggests:	php-simplexml
 Suggests:	php-soap
 Suggests:	php-tokenizer
+Obsoletes:	php-PHPUnit
+Obsoletes:	php-PHPUnit-tests
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # exclude optional dependencies
 %define		dep_optional	pear(Image/GraphViz.*) pear(Log.*) pear(SymfonyComponents/.*) pear(XML/RPC2/Client.php)
-%define		dep_missing1		pear(File/Iterator/Factory.php) pear(PHP/CodeCoverage.*) pear(PHP/Timer.php) pear(Text/Template.php)
 
 # put it together for rpmbuild
 %define		_noautoreq	%{?dep_optional} %{?dep_missing}
@@ -67,20 +65,6 @@ którzy implementują jednostki testowe w PHP. Jest bazowane na JUnit,
 który można znaleźć pod adresem <http://www.junit.org/>.
 
 Ta klasa ma w PEAR status: %{_status}.
-
-%package tests
-Summary:	Tests for PEAR::%{_pearname}
-Summary(pl.UTF-8):	Testy dla PEAR::%{_pearname}
-Group:		Development/Languages/PHP
-Requires:	%{name} = %{version}-%{release}
-AutoProv:	no
-AutoReq:	no
-
-%description tests
-Tests for PEAR::%{_pearname}.
-
-%description tests -l pl.UTF-8
-Testy dla PEAR::%{_pearname}.
 
 %prep
 %pear_package_setup
@@ -100,10 +84,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc install.log optional-packages.txt
 %{php_pear_dir}/.registry/.channel.pear.phpunit.de/*.reg
 %attr(755,root,root) %{_bindir}/phpunit
-%{php_pear_dir}/%{_class}
-
-%if %{with tests}
-%files tests
-%defattr(644,root,root,755)
-%{php_pear_dir}/tests/%{_pearname}
-%endif
+%{php_pear_dir}/PHPUnit
