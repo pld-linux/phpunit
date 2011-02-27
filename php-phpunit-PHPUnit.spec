@@ -5,12 +5,12 @@
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-phpunit-%{_pearname}
-Version:	3.5.11
-Release:	2
+Version:	3.5.12
+Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	ddad3f5b0a2743b73bb6ad408c6b284d
+# Source0-md5:	291735a36f73fa6b6d0a344be422e4fe
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
