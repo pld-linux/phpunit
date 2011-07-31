@@ -5,12 +5,12 @@
 Summary:	%{_pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{_pearname} - zestaw testów regresyjnych
 Name:		php-phpunit-%{_pearname}
-Version:	3.5.13
-Release:	3
+Version:	3.5.14
+Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	698e97db8c8147398e2db030a3b370e0
+# Source0-md5:	0c0e6b7ecbdf85a01867e89e07e2c143
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -24,6 +24,7 @@ Requires:	php-common >= 4:%{php_min_version}
 Requires:	php-dom
 Requires:	php-pcre
 Requires:	php-pear >= 4:1.1-2
+Requires:	php-pear-XML_RPC2
 Requires:	php-phpunit-DbUnit >= 1.0.0
 Requires:	php-phpunit-File_Iterator >= 1.2.3
 Requires:	php-phpunit-PHPUnit_MockObject >= 1.0.3
@@ -34,13 +35,13 @@ Requires:	php-phpunit-Text_Template >= 1.0.0
 Requires:	php-reflection
 Requires:	php-spl
 Requires:	php-symfony-YAML >= 1.0.2
-Requires:	php-tokenizer
 Suggests:	php-curl
 Suggests:	php-dbus
 Suggests:	php-json
 Suggests:	php-pdo
 Suggests:	php-simplexml
 Suggests:	php-soap
+Suggests:	php-tokenizer
 Provides:	php-PHPUnit = %{version}
 Obsoletes:	php-PHPUnit < 3.5
 Obsoletes:	php-PHPUnit-tests
