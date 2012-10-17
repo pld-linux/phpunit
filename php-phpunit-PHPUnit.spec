@@ -35,7 +35,7 @@ Requires:	php-phpunit-PHP_CodeCoverage >= 1.1.0
 Requires:	php-phpunit-PHP_Timer >= 1.0.2
 Requires:	php-phpunit-Text_Template >= 1.1.1
 Requires:	php-reflection
-Requires:	php-symfony-YAML >= 2.1.0
+Requires:	php-symfony2-Yaml >= 2.1.0
 Suggests:	php-curl
 Suggests:	php-dbus
 Suggests:	php-json
