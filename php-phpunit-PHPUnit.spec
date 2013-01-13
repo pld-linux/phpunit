@@ -5,12 +5,12 @@
 Summary:	%{pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{pearname} - zestaw testów regresyjnych
 Name:		php-phpunit-%{pearname}
-Version:	3.7.8
+Version:	3.7.12
 Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	b7e40d23e937a116c070dfd16e48e840
+# Source0-md5:	3eb8e40f892653daa3c32495707f4aea
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -35,6 +35,7 @@ Requires:	php-phpunit-PHP_CodeCoverage >= 1.1.0
 Requires:	php-phpunit-PHP_Timer >= 1.0.2
 Requires:	php-phpunit-Text_Template >= 1.1.1
 Requires:	php-reflection
+Requires:	php-symfony2-Yaml <= 2.1.99
 Requires:	php-symfony2-Yaml >= 2.1.0
 Suggests:	php-curl
 Suggests:	php-dbus
