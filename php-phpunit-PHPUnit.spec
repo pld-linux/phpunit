@@ -20,6 +20,7 @@ BuildRequires:	php-pear-PEAR >= 1:1.9.4
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.580
 Requires:	php(core) >= %{php_min_version}
+# https://github.com/sebastianbergmann/phpunit/pull/975
 Requires:	php(ctype)
 Requires:	php(dom)
 Requires:	php(pcre)
