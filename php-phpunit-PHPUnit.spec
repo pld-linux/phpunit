@@ -1,16 +1,16 @@
 %define		status		stable
 %define		pearname	PHPUnit
-%define		php_min_version 5.2.7
+%define		php_min_version 5.3.3
 %include	/usr/lib/rpm/macros.php
 Summary:	%{pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{pearname} - zestaw testów regresyjnych
 Name:		php-phpunit-%{pearname}
-Version:	3.7.13
+Version:	3.7.27
 Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	3c90c92c2796c3a1737c6b5795f5aa07
+# Source0-md5:	254373321f77807658540c550e13e9e1
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -23,28 +23,22 @@ Requires:	php(core) >= %{php_min_version}
 Requires:	php(ctype)
 Requires:	php(dom)
 Requires:	php(pcre)
+Requires:	php(reflection)
 Requires:	php(spl)
 Requires:	php-channel(pear.phpunit.de)
-Requires:	php-pear >= 4:1.1-2
-Requires:	php-phpunit-DbUnit >= 1.0.0
 Requires:	php-phpunit-File_Iterator >= 1.3.1
 Requires:	php-phpunit-PHPUnit_MockObject <= 1.2.99
-Requires:	php-phpunit-PHPUnit_MockObject >= 1.1.0
+Requires:	php-phpunit-PHPUnit_MockObject >= 1.2.0
 Requires:	php-phpunit-PHP_CodeCoverage <= 1.2.99
-Requires:	php-phpunit-PHP_CodeCoverage >= 1.1.0
-Requires:	php-phpunit-PHP_Timer >= 1.0.2
+Requires:	php-phpunit-PHP_CodeCoverage >= 1.2.1
+Requires:	php-phpunit-PHP_Timer >= 1.0.4
 Requires:	php-phpunit-Text_Template >= 1.1.1
-Requires:	php-reflection
-Requires:	php-symfony2-Yaml <= 2.1.99
-Requires:	php-symfony2-Yaml >= 2.1.0
-Suggests:	php-curl
-Suggests:	php-dbus
-Suggests:	php-json
-Suggests:	php-pdo
+Requires:	php-symfony2-Yaml <= 2.99.99
+Requires:	php-symfony2-Yaml >= 2.0
+Suggests:	php(json)
+Suggests:	php(simplexml)
+Suggests:	php(tokenizer)
 Suggests:	php-phpunit-PHP_Invoker
-Suggests:	php-simplexml
-Suggests:	php-soap
-Suggests:	php-tokenizer
 Provides:	php-PHPUnit = %{version}
 Obsoletes:	php-PHPUnit < 3.5
 Obsoletes:	php-PHPUnit-tests
