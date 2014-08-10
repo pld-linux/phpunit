@@ -4,7 +4,7 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	%{pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{pearname} - zestaw testów regresyjnych
-Name:		php-phpunit-%{pearname}
+Name:		phpunit
 Version:	3.7.27
 Release:	1
 License:	BSD
@@ -45,6 +45,7 @@ Obsoletes:	php-PHPUnit < 3.5
 Obsoletes:	php-PHPUnit-tests
 Obsoletes:	php-pear-PHPUnit
 Obsoletes:	php-pear-PHPUnit2
+Obsoletes:	php-phpunit-PHPUnit
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
