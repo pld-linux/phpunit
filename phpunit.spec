@@ -5,12 +5,14 @@
 Summary:	%{pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{pearname} - zestaw testów regresyjnych
 Name:		phpunit
-Version:	3.7.35
-Release:	2
+# we use 3.7-lts version
+Version:	3.7.38
+Release:	1
 License:	BSD
 Group:		Development/Languages/PHP
-Source0:	http://pear.phpunit.de/get/PHPUnit-%{version}.tgz
-# Source0-md5:	dabdff3e1503f6f5dc97ece1a5c15bee
+Source0:	https://github.com/sebastianbergmann/phpunit/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	d7452511b562cc582f204da0b180ff42
+Patch0:		autoload.patch
 URL:		http://www.phpunit.de/
 BuildRequires:	php-channel(components.ez.no)
 BuildRequires:	php-channel(pear.phpunit.de)
@@ -65,21 +67,20 @@ który można znaleźć pod adresem <http://www.junit.org/>.
 Ta klasa ma w PEAR status: %{status}.
 
 %prep
-%pear_package_setup
+%setup -q
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{php_pear_dir}
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -p usr/bin/phpunit $RPM_BUILD_ROOT%{_bindir}
-%pear_package_install
+install -d $RPM_BUILD_ROOT{%{php_pear_dir},%{_bindir}}
+cp -a PHPUnit $RPM_BUILD_ROOT%{php_pear_dir}
+install -p phpunit.php $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc install.log optional-packages.txt
-%{php_pear_dir}/.registry/.channel.pear.phpunit.de/*.reg
+%doc README.md LICENSE
 %attr(755,root,root) %{_bindir}/phpunit
 %{php_pear_dir}/PHPUnit
