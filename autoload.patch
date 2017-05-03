@@ -1,20 +1,17 @@
---- phpunit-3.7.35/phpunit.php~	2015-11-10 16:39:54.000000000 +0200
-+++ phpunit-3.7.35/phpunit.php	2015-11-10 16:39:57.907131109 +0200
+--- phpunit-4.8.35/phpunit~	2017-05-03 21:31:46.000000000 +0300
++++ phpunit-4.8.35/phpunit	2017-05-03 21:33:36.879408483 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env php
 +#!/usr/bin/php
  <?php
  /* PHPUnit
   *
-@@ -37,10 +37,6 @@
+@@ -27,7 +27,7 @@
+     ini_set('date.timezone', 'UTC');
+ }
  
- define('PHPUnit_MAIN_METHOD', 'PHPUnit_TextUI_Command::main');
+-foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
++foreach (array('/usr/share/php/PHPUnit/autoload.php', __DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
+     if (file_exists($file)) {
+         define('PHPUNIT_COMPOSER_INSTALL', $file);
  
--if (strpos('@php_bin@', '@php_bin') === 0) {
--    require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'PHPUnit' . DIRECTORY_SEPARATOR . 'Autoload.php';
--} else {
--    require '@php_dir@' . DIRECTORY_SEPARATOR . 'PHPUnit' . DIRECTORY_SEPARATOR . 'Autoload.php';
--}
-+require '/usr/share/pear/PHPUnit/Autoload.php';
- 
- PHPUnit_TextUI_Command::main();
