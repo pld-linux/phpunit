@@ -1,17 +1,31 @@
---- phpunit-4.8.35/phpunit~	2017-05-03 21:31:46.000000000 +0300
-+++ phpunit-4.8.35/phpunit	2017-05-03 21:33:36.879408483 +0300
+--- phpunit-4.8.35/phpunit	2017-05-03 21:33:36.879408483 +0300
++++ phpunit-4.8.35/phpunit	2017-05-03 21:51:23.888284948 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env php
 +#!/usr/bin/php
  <?php
  /* PHPUnit
   *
-@@ -27,7 +27,7 @@
+@@ -27,16 +27,14 @@
      ini_set('date.timezone', 'UTC');
  }
  
 -foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
-+foreach (array('/usr/share/php/PHPUnit/autoload.php', __DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
-     if (file_exists($file)) {
-         define('PHPUNIT_COMPOSER_INSTALL', $file);
+-    if (file_exists($file)) {
+-        define('PHPUNIT_COMPOSER_INSTALL', $file);
+-
+-        break;
+-    }
++// Libraries PATH
++if (file_exists('./vendor/phpunit/phpunit/phpunit') && file_exists('./vendor/autoload.php')) {
++  echo "\n==== Redirecting to composer installed version in vendor/phpunit ====\n\n";
++  define('PHPUNIT_COMPOSER_INSTALL', realpath('./vendor/autoload.php'));
++} else {
++  define('PHPUNIT_COMPOSER_INSTALL', stream_resolve_include_path('PHPUnit/Autoload.php'));
+ }
  
+-unset($file);
+-
+ if (!defined('PHPUNIT_COMPOSER_INSTALL')) {
+     fwrite(STDERR,
+         'You need to set up the project dependencies using Composer:' . PHP_EOL . PHP_EOL .
