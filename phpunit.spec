@@ -1,7 +1,6 @@
 %define		status		stable
 %define		pearname	PHPUnit
 %define		php_min_version 5.3.3
-%include	/usr/lib/rpm/macros.php
 Summary:	%{pearname} - regression testing framework for unit tests
 Summary(pl.UTF-8):	%{pearname} - zestaw testów regresyjnych
 Name:		phpunit
