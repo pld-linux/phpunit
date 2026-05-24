@@ -6,7 +6,7 @@ Summary(pl.UTF-8):	%{pearname} - zestaw testów regresyjnych
 Name:		phpunit
 # we use 3.7-lts version
 Version:	3.7.38
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages/PHP
 Source0:	https://github.com/sebastianbergmann/phpunit/archive/%{version}/%{name}-%{version}.tar.gz
